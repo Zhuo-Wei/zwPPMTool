@@ -4,18 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import zhuowei.ppmtool.domain.Project;
+import zhuowei.ppmtool.services.MapValidationErrorService;
 import zhuowei.ppmtool.services.ProjectService;
-
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/project")
@@ -24,27 +18,41 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private MapValidationErrorService mapValidationErrorService;
+
     // route to post/create a new project
     @PostMapping("")
     public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
         // valid avoid server error
         // BindingResult result: an interface that invokes the validator on an object(determine whether an error)
-        if (result.hasErrors()) {
 
-            Map<String, String> errorMap = new HashMap<>();
-            //error info pattern: "field"(key): "error name"(value)
-            for(FieldError error: result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-
-            return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
-        }
-
-
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
 
         //happy path
         Project project1 = projectService.saveOrUpdateProject(project);
+         //object duplication error happens when persist the object to database
         return new ResponseEntity<Project>(project, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{projectId}")
+    public ResponseEntity<?> getProjectById(@PathVariable String projectId) {//identity projectId as the one in annotation
+
+        Project project = projectService.findProjectByIdentifier(projectId.toUpperCase());
+
+        return new ResponseEntity<Project>(project, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public Iterable<Project> getAllProjects() {
+        return projectService.findAllProjects();
+    }
+
+    @DeleteMapping("/{projectId}")
+    public ResponseEntity<?> deleteProject(@PathVariable String projectId) {
+        projectService.deleteProjectByIdentifier(projectId);
+        return new ResponseEntity<String>("Project with Id: '" + projectId + "' was deleted", HttpStatus.OK);
     }
 
 
