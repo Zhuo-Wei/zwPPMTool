@@ -12,7 +12,7 @@ public class ProjectTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(updatable = false)
-    private String projectIdentifier;
+    private String projectSequence;
     @NotBlank(message = "Please include a project summary")
     private String summary;
     private String acceptanceCriteria;
@@ -43,12 +43,12 @@ public class ProjectTask {
         this.id = id;
     }
 
-    public String getProjectIdentifier() {
-        return projectIdentifier;
+    public String getProjectSequence() {
+        return projectSequence;
     }
 
-    public void setProjectIdentifier(String projectIdentifier) {
-        this.projectIdentifier = projectIdentifier;
+    public void setProjectSequence(String projectSequence) {
+        this.projectSequence = projectSequence;
     }
 
     public String getSummary() {
@@ -137,7 +137,7 @@ public class ProjectTask {
     public String toString() {
         return "ProjectTask{" +
                 "id=" + id +
-                ", projectIdentifier='" + projectIdentifier + '\'' +
+                ", projectIdentifier='" + projectSequence + '\'' +
                 ", summary='" + summary + '\'' +
                 ", acceptanceCriteria='" + acceptanceCriteria + '\'' +
                 ", status='" + status + '\'' +
