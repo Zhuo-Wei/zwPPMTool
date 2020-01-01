@@ -1,12 +1,13 @@
 package zhuowei.ppmtool.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Backlog {
+public class Backlog { // each project has one backlog, a backlog can only belong to one project
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,9 +15,14 @@ public class Backlog {
     private String projectIdentifier;
 
     //OneToOne with project
-
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id", nullable = false)
+    @JsonIgnore // break infinite recursion
+    private Project project;
 
     //OneToMany projec tasks
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "backlog")
+    private List<ProjectTask> projectTask = new ArrayList<>();
 
 
     public Backlog() {
@@ -45,4 +51,21 @@ public class Backlog {
     public void setProjectIdentifier(String projectIdentifier) {
         this.projectIdentifier = projectIdentifier;
     }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public List<ProjectTask> getProjectTask() {
+        return projectTask;
+    }
+
+    public void setProjectTask(List<ProjectTask> projectTask) {
+        this.projectTask = projectTask;
+    }
+
 }
