@@ -27,7 +27,7 @@ public class ProjectTask {
     private Backlog backlog;
 
     @Column(updatable = false)
-    private String getProjectIdentifier;
+    private String projectIdentifier;
 
     private Date create_At;
     private Date update_At;
@@ -91,12 +91,12 @@ public class ProjectTask {
         this.dueDate = dueDate;
     }
 
-    public String getGetProjectIdentifier() {
-        return getProjectIdentifier;
+    public String getProjectIdentifier() {
+        return projectIdentifier;
     }
 
-    public void setGetProjectIdentifier(String getProjectIdentifier) {
-        this.getProjectIdentifier = getProjectIdentifier;
+    public void setProjectIdentifier(String projectIdentifier) {
+        this.projectIdentifier = projectIdentifier;
     }
 
     public Date getCreate_At() {
@@ -123,6 +123,7 @@ public class ProjectTask {
         this.backlog = backlog;
     }
 
+
     @PrePersist
     protected  void onCreate() {
         this.create_At = new Date();
@@ -143,7 +144,7 @@ public class ProjectTask {
                 ", status='" + status + '\'' +
                 ", priority=" + priority +
                 ", dueDate=" + dueDate +
-                ", getProjectIdentifier='" + getProjectIdentifier + '\'' +
+                ", getProjectIdentifier='" + projectIdentifier + '\'' +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +
                 '}';

@@ -1,5 +1,6 @@
 package zhuowei.ppmtool.domain;
         import com.fasterxml.jackson.annotation.JsonFormat;
+        import com.fasterxml.jackson.annotation.JsonIgnore;
 
         import javax.persistence.*;
         import javax.validation.constraints.NotBlank;
@@ -38,6 +39,7 @@ public class Project {
     private  Date updated_At;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    @JsonIgnore
     //eager: when load a project, the backlog is already available; lazy: not load unless request it
     //cascade all :the project is the owning side of the relationship
     // => if delete project, every child of project(backlog & projectTask) should also be deleted

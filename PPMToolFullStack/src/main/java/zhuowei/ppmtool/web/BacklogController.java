@@ -10,6 +10,7 @@ import zhuowei.ppmtool.services.MapValidationErrorService;
 import zhuowei.ppmtool.services.ProjectTaskService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/api/backlog")
 @RestController
@@ -30,6 +31,12 @@ public class BacklogController {
 
         return new ResponseEntity<ProjectTask>(projectTask1, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{backlog_id}")
+    public Iterable<ProjectTask> getProjectBacklog(@PathVariable String backlog_id) {
+        return projectTaskService.findBacklogById(backlog_id);
+    }
+
 
 
 }
