@@ -12,4 +12,6 @@ package zhuowei.ppmtool.repositories;
 public interface ProjectTaskRepository extends CrudRepository<ProjectTask, Long> {// long:id{
 
     Iterable<ProjectTask> findByProjectIdentifierOrderByPriority(String id);
+
+    ProjectTask findByProjectSequence(String sequence);
 }
