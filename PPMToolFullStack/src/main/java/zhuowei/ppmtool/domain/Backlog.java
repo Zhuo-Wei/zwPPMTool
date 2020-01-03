@@ -21,7 +21,9 @@ public class Backlog { // each project has one backlog, a backlog can only belon
     private Project project;
 
     //OneToMany projec tasks
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "backlog")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH, mappedBy = "backlog", orphanRemoval =  true)
+    //refresh backlog to update
+    //orpharemoval: child no longer reference from the parent, it get rid of the child
     private List<ProjectTask> projectTask = new ArrayList<>();
 
 
