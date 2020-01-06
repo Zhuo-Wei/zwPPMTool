@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33049996-8fc4-4543-81dd-a235886f144a" name="Default Changelist" comment="all works">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmtool-react-client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/ppmtool-react-client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmtool-react-client/src/actions/projectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/ppmtool-react-client/src/actions/projectActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmtool-react-client/src/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/ppmtool-react-client/src/actions/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmtool-react-client/src/components/Project/ProjectItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/ppmtool-react-client/src/components/Project/ProjectItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmtool-react-client/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ppmtool-react-client/src/reducers/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="33049996-8fc4-4543-81dd-a235886f144a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,8 +50,16 @@
       <updated>1577215512407</updated>
       <workItem from="1577215513802" duration="10000" />
       <workItem from="1577898660312" duration="52000" />
-      <workItem from="1578093256686" duration="87000" />
+      <workItem from="1578093256686" duration="310000" />
     </task>
+    <task id="LOCAL-00001" summary="ProjectBoard frontEnd">
+      <created>1578093560942</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578093560942</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -79,14 +80,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all works" />
-    <option name="LAST_COMMIT_MESSAGE" value="all works" />
+    <MESSAGE value="ProjectBoard frontEnd" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProjectBoard frontEnd" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="194" y="23" width="845" height="726" key="CommitChangelistDialog2" timestamp="1578093339322">
+    <state x="194" y="23" width="845" height="726" key="CommitChangelistDialog2" timestamp="1578093560637">
       <screen x="0" y="23" width="1280" height="726" />
     </state>
     <state x="194" y="23" key="CommitChangelistDialog2/0.23.1280.723/-1481.-1057.1920.1057@0.23.1280.723" timestamp="1577898704567" />
-    <state x="194" y="23" width="845" height="726" key="CommitChangelistDialog2/0.23.1280.726/-1481.-1057.1920.1057@0.23.1280.726" timestamp="1578093339322" />
+    <state x="194" y="23" width="845" height="726" key="CommitChangelistDialog2/0.23.1280.726/-1481.-1057.1920.1057@0.23.1280.726" timestamp="1578093560637" />
+    <state x="240" y="131" key="Vcs.Push.Dialog.v2" timestamp="1578093562826">
+      <screen x="0" y="23" width="1280" height="726" />
+    </state>
+    <state x="240" y="131" key="Vcs.Push.Dialog.v2/0.23.1280.726/-1481.-1057.1920.1057@0.23.1280.726" timestamp="1578093562826" />
     <state x="305" y="73" key="search.everywhere.popup" timestamp="1578093406249">
       <screen x="0" y="23" width="1280" height="726" />
     </state>
