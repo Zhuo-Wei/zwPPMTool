@@ -9,6 +9,7 @@ import zhuowei.ppmtool.domain.Project;
 import zhuowei.ppmtool.services.MapValidationErrorService;
 import zhuowei.ppmtool.services.ProjectService;
 import javax.validation.Valid;
+import java.security.Principal;
 
 
 @RestController
@@ -24,7 +25,7 @@ public class ProjectController {
 
     // route to post/create a new project
     @PostMapping("")
-    public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
+    public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result, Principal principal) {
         // valid avoid server error
         // BindingResult result: an interface that invokes the validator on an object(determine whether an error)
 
@@ -32,27 +33,27 @@ public class ProjectController {
         if (errorMap != null) return errorMap;
 
         //happy path
-        Project project1 = projectService.saveOrUpdateProject(project);
+        Project project1 = projectService.saveOrUpdateProject(project, principal.getName());
          //object duplication error happens when persist the object to database
         return new ResponseEntity<Project>(project, HttpStatus.CREATED);
     }
 
     @GetMapping("/{projectId}")
-    public ResponseEntity<?> getProjectById(@PathVariable String projectId) {//identity projectId as the one in annotation
+    public ResponseEntity<?> getProjectById(@PathVariable String projectId, Principal principal) {//identity projectId as the one in annotation
 
-        Project project = projectService.findProjectByIdentifier(projectId.toUpperCase());
+        Project project = projectService.findProjectByIdentifier(projectId.toUpperCase(), principal.getName());
 
         return new ResponseEntity<Project>(project, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public Iterable<Project> getAllProjects() {
-        return projectService.findAllProjects();
+    public Iterable<Project> getAllProjects(Principal principal) {
+        return projectService.findAllProjects(principal.getName());
     }
 
     @DeleteMapping("/{projectId}")
-    public ResponseEntity<?> deleteProject(@PathVariable String projectId) {
-        projectService.deleteProjectByIdentifier(projectId);
+    public ResponseEntity<?> deleteProject(@PathVariable String projectId, Principal principal) {
+        projectService.deleteProjectByIdentifier(projectId, principal.getName());
         return new ResponseEntity<String>("Project with Id: '" + projectId + "' was deleted", HttpStatus.OK);
     }
 
