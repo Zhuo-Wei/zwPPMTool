@@ -4,6 +4,7 @@ const initialState = {
   validToken: false,
   user: {}
 };
+
 const booleanActionPayload = payload => {
   if (payload) {
     return true;
@@ -20,6 +21,7 @@ export default function(state = initialState, action) {
         validToken: booleanActionPayload(action.payload),
         user: action.payload
       };
+
     default:
       return state;
   }
